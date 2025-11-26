@@ -7,10 +7,10 @@ const Loading = () => {
 
 const styles = StyleSheet.create({
   loading: {
-    marginTop: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    height: '100%',
+    width: '100%',
   }
 })
 

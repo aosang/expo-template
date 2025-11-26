@@ -1,14 +1,15 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
+import ProgressWebView from '@/components/progressWebview';
 
 export default function Course() {
   const { id } = useLocalSearchParams();
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>这里是课程页</Text>
-
-      <Text style={styles.info}>课程ID: {id}</Text>
+      <ProgressWebView
+        source={{ uri: `https://www.baidu.com` }}
+      />
     </View>
   );
 }
@@ -17,8 +18,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
     fontSize: 40,

@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useRouter, Link, Stack } from 'expo-router';
+import { useRouter, Link } from 'expo-router';
 
 export default function Index() {
   const router = useRouter()
@@ -13,7 +13,11 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: '首页' }}/>
+      {/* <Stack.Screen 
+        options={{ 
+          headerTitle: '首页',  
+        }} 
+      /> */}
       <Text style={styles.title}>这里是首页</Text>
 
       <TouchableOpacity onPress={sendParams}>
@@ -45,7 +49,11 @@ export default function Index() {
       {/* <TouchableOpacity onPress={() => router.push('/details')}>
         <Text style={styles.buttonText}>跳转到详情页</Text>
       </TouchableOpacity> */}
+      
 
+      <Link style={styles.link} href="/teachers/1">
+        打开教师页（Modal）
+      </Link>
     </View>
   )
 }
@@ -67,4 +75,9 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: '#ff7f6f',
   },
-});
+  link: {
+    marginTop: 20,
+    fontSize: 25,
+    color: '#ff7f6f',
+  },
+})
