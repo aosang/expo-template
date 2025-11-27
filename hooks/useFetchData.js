@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { get } from '../utils/request'
+import { get } from '@/utils/request'
 
 /**
  * 自定义 Hooks 获取数据
@@ -14,17 +14,21 @@ import { get } from '../utils/request'
 **/
 
 const useFetchData = (url, params = {}) => {
-  const [data, setData] = useState([])
+  const [data, setData] = useState({})
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
   const fetchData = async () => {
     try {
       const response = await get(url, params)
-      // 提取 result.newslist，如果不存在则使用空数组
-      const newslist = response?.result?.newslist || []
-      setData(newslist)
+      // console.log('API Response:', response)
+      
+      // 如果后端返回 { code, data, message } 格式，使用 response.data
+      // 如果直接返回数据对象，使用 response
+      const data = response.data || response
+      setData(data)
     } catch(error) {
+      console.error('Fetch Error:', error)
       setError(true)
     } finally {
       setLoading(false)

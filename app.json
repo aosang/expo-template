@@ -27,8 +27,16 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-router",
+      [
+        "expo-router",
+        {
+          "root": "./src"
+        }
+      ],
       "expo-web-browser"
-    ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
   }
 }

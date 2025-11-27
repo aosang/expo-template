@@ -1,4 +1,5 @@
 import urlcat from 'urlcat'
+import Constants from 'expo-constants'
 
 /** 
   * 基础请求函数
@@ -33,13 +34,13 @@ import urlcat from 'urlcat'
 **/
 
 // 将key设置为固定参数（优先使用环境变量，缺省用你的固定key）
-const API_KEY = process.env.EXPO_PUBLIC_API_KEY 
+// const API_KEY = process.env.EXPO_PUBLIC_API_KEY 
 
 const request = async (url, {method = "GET", params, body} = {}) => { 
   // 完整的接口地址
-  const apiUrl = process.env.EXPO_PUBLIC_API_URL
+  const apiUrl = Constants.expoConfig?.extra?.EXPO_PUBLIC_API_URL || process.env.EXPO_PUBLIC_API_URL || 'http://localhost:3000'
   // 在原有 params 基础上，统一附加 key 作为查询参数
-  const mergedParams = { key: API_KEY, ...(params || {}) }
+  const mergedParams = { ...(params || {}) }
   const requestUrl = urlcat(apiUrl, url, mergedParams)
 
   // 请求头
